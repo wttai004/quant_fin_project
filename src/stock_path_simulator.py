@@ -60,6 +60,28 @@ def _put_option_payoff(S, K, r, t):
     return max(K - S, 0) * np.exp(-r * t)
 
 
+def _call_option_payoff(S, K, r, t):
+    """
+    Calculate the discounted payoff of a call option.
+    
+    Parameters:
+    -----------
+    S : float
+        Current stock price
+    K : float
+        Strike price
+    r : float
+        Risk-free rate
+    t : float
+        Time to expiration
+    
+    Returns:
+    --------
+    float
+        Discounted call option payoff
+    """
+    return max(S - K, 0) * np.exp(-r * t)
+
 class StockPathSimulator:
     def __init__(self, S0=140, sigma=0.3, t=10, r=0.035, mu=0.0, n_sims=1000, n_steps=200):
         """
@@ -93,6 +115,9 @@ class StockPathSimulator:
 
     def put_option_payoff(self, S, K, t):
         return _put_option_payoff(S, K, self.r, t)
+
+    def call_option_payoff(self, S, K, t):
+        return _call_option_payoff(S, K, self.r, t)
 
     def simulate_paths(self):
         self.simulated_paths = _GBM_paths(self.S0, self.sigma, self.t, self.r, self.mu, self.n_sims, self.n_steps)
