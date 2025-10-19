@@ -93,7 +93,7 @@ class StockPathSimulator:
             Initial stock price
         sigma : float, default=0.3
             Volatility
-        t : float, default=10
+        T : float, default=10
             Time horizon (years)
         r : float, default=0.035
             Risk-free rate
@@ -106,19 +106,19 @@ class StockPathSimulator:
         """
         self.S0 = S0
         self.sigma = sigma
-        self.t = t
+        self.T = t
         self.r = r
         self.mu = mu
         self.n_sims = n_sims
         self.n_steps = n_steps
         self.simulated_paths = self.simulate_paths()
 
-    def put_option_payoff(self, S, K, t):
-        return _put_option_payoff(S, K, self.r, t)
+    def put_option_payoff(self, S, K, T):
+        return _put_option_payoff(S, K, self.r, T)
 
-    def call_option_payoff(self, S, K, t):
-        return _call_option_payoff(S, K, self.r, t)
+    def call_option_payoff(self, S, K, T):
+        return _call_option_payoff(S, K, self.r, T)
 
     def simulate_paths(self):
-        self.simulated_paths = _GBM_paths(self.S0, self.sigma, self.t, self.r, self.mu, self.n_sims, self.n_steps)
+        self.simulated_paths = _GBM_paths(self.S0, self.sigma, self.T, self.r, self.mu, self.n_sims, self.n_steps)
         return self.simulated_paths
