@@ -83,7 +83,7 @@ def _call_option_payoff(S, K, r, t):
     return max(S - K, 0) * np.exp(-r * t)
 
 class StockPathSimulator:
-    def __init__(self, S0=140, sigma=0.3, t=10, r=0.035, mu=0.0, n_sims=1000, n_steps=200):
+    def __init__(self, S0=140, sigma=0.3, T=10, r=0.035, mu=0.0, n_sims=1000, n_steps=200):
         """
         Initialize the Stock Path Simulator.
         
@@ -106,12 +106,12 @@ class StockPathSimulator:
         """
         self.S0 = S0
         self.sigma = sigma
-        self.T = t
+        self.T = T
         self.r = r
         self.mu = mu
         self.n_sims = n_sims
         self.n_steps = n_steps
-        self.simulated_paths = self.simulate_paths()
+        self.stock_paths = self.simulate_paths()
 
     def put_option_payoff(self, S, K, T):
         return _put_option_payoff(S, K, self.r, T)
@@ -120,5 +120,5 @@ class StockPathSimulator:
         return _call_option_payoff(S, K, self.r, T)
 
     def simulate_paths(self):
-        self.simulated_paths = _GBM_paths(self.S0, self.sigma, self.T, self.r, self.mu, self.n_sims, self.n_steps)
-        return self.simulated_paths
+        self.stock_paths = _GBM_paths(self.S0, self.sigma, self.T, self.r, self.mu, self.n_sims, self.n_steps)
+        return self.stock_paths
