@@ -75,3 +75,6 @@ class BinomialTreeSimulator:
                 american_option_prices[i, j] = max(continuation_value, exercise_value)
         
         return american_option_prices[0, 0]
+    
+    def american_premium(self):
+        return self.price_american_option() - self.price_european_option()
