@@ -1,4 +1,4 @@
-# American Option Pricing: Studying American Premium with Binomial Tree and Monte-Carlo Methods
+# American Option Pricing: Early-Exercise Premium via Binomial Trees and Monte Carlo
 
 American options are options where the owner can choose to exercise them at _any_ point up to and including the expiration date. Because this provides an additional mechanism to exercise compared to European options (which only allow exercise at the expiration date), American options are at least as valuable as their European counterparts, and their difference depends on the value of early exercise, called the _early exercise premium_. 
 
